@@ -1,0 +1,841 @@
+:- use_module(library(lists)).
+group1(
+[
+
+       [
+[1,1,0,0,0,0,0,0,0,0],
+[0,1,1,0,0,0,0,0,0,0],
+[0,0,1,1,0,0,0,0,0,0],
+[0,0,0,1,1,0,0,0,0,0],
+[0,0,0,0,1,1,0,0,0,0],
+[0,0,0,0,0,1,1,0,0,0],
+[0,0,0,0,0,0,1,1,0,0],
+[0,0,0,0,0,0,0,1,1,0],
+[0,0,0,0,0,0,0,0,1,1],
+[0,0,0,0,0,0,0,0,1,1],
+[0,0,0,0,0,0,0,1,1,0],
+[0,0,0,0,0,0,1,1,0,0],
+[0,0,0,0,0,1,1,0,0,0],
+[0,0,0,0,1,1,0,0,0,0],
+[0,0,0,1,1,0,0,0,0,0],
+[0,0,1,1,0,0,0,0,0,0]
+         ],
+        %  aligned
+         [
+ [1,1,1,1,1,1,1,0,0,0],
+ [1,1,1,1,1,1,0,0,0,0],
+ [1,1,1,1,0,0,0,0,0,0],
+ [1,1,1,1,1,0,0,0,0,0],
+ [1,1,1,1,1,1,0,0,0,0],
+ [1,1,1,1,1,0,0,0,0,0],
+ [1,1,1,1,1,1,1,0,0,0],
+ [1,1,1,1,1,0,0,0,0,0],
+ [1,1,1,1,1,1,1,1,0,0],
+ [1,1,1,1,1,1,0,0,0,0],
+ [1,1,1,1,1,1,0,0,0,0],
+ [1,1,1,1,1,0,0,0,0,0],
+ [1,1,1,1,1,1,1,0,0,0],
+ [1,1,1,1,1,0,0,0,0,0],
+ [1,1,1,1,1,1,1,0,0,0],
+ [1,1,1,1,1,0,0,0,0,0]
+         ],
+
+         [
+[0,0,0,0,1,1,0,0,0,0],
+[0,1,1,1,1,1,1,1,1,0],
+[0,0,1,1,1,1,1,1,0,0],
+[0,0,0,1,1,1,1,0,0,0],
+[0,0,0,1,1,1,1,0,0,0],
+
+[0,0,0,1,1,1,1,0,0,0],
+[0,1,1,1,1,1,1,1,1,0],
+[0,0,1,1,1,1,1,1,0,0],
+[0,0,0,1,1,1,1,0,0,0],
+[0,0,0,1,1,1,1,0,0,0],
+
+[0,0,0,1,1,1,1,0,0,0],
+[0,1,1,1,1,1,1,1,1,0],
+[0,0,1,1,1,1,1,1,0,0],
+[0,0,0,1,1,1,1,0,0,0],
+[0,0,0,1,1,1,1,0,0,0],
+[0,0,0,0,1,1,0,0,0,0]
+         ],
+
+         [
+[1,1,1,1,0,0,0,0,0,0],
+[0,0,1,1,1,1,1,0,0,0],
+[1,1,1,1,1,0,0,0,0,0],
+[0,0,1,1,1,1,1,0,0,0],
+[0,1,1,1,1,0,0,0,0,0],
+[0,0,0,1,1,1,1,1,0,0],
+[0,0,1,1,1,0,0,0,0,0],
+[0,0,0,0,1,1,1,1,1,0],
+[1,1,1,1,1,0,0,0,0,0],
+[0,0,1,1,1,1,1,0,0,0],
+[1,1,1,1,1,0,0,0,0,0],
+[0,0,1,1,1,1,1,0,0,0],
+[1,1,1,1,1,0,0,0,0,0],
+[0,0,1,1,1,1,1,0,0,0],
+[1,1,1,1,1,0,0,0,0,0],
+[0,0,1,1,1,1,1,0,0,0]
+         ],
+         [
+[1,1,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,1,1,1,1],
+[1,1,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,1,1,1,1],
+[1,1,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,1,1,1,1],
+[1,1,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,1,1,1,1],
+[1,1,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,1,1,1,1],
+[1,1,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,1,1,1,1],
+[1,1,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,1,1,1,1],
+[1,1,1,1,1,1,0,0,0,0],
+[0,0,0,0,0,0,1,1,1,1]
+         ]
+      ]).
+
+
+get_element_at(Matrix, Row, Col, Element) :-
+    nth0(Row, Matrix, MatrixRow),  % get the specified row
+    nth0(Col, MatrixRow, Element).  % get the element from the row
+
+% no_space_at_start/1 will be true if none of the lines in the input list start with a space
+no_space_at_start([]).
+no_space_at_start([Line|Rest]) :-
+    [X1|_]=Line,
+    %\+ sub_string(Line, 0, 1, _, '0'),
+    X1=1,
+    no_space_at_start(Rest).
+/*
+centered([]).
+centered([Line|Rest]):-
+    reverse(Line,Rline),
+    Line = Rline,
+    centered(Rest).
+*/
+%first1([1|_],index):-
+index_of_first_one([1|_], 0):- !.
+index_of_first_one([_|T], Index) :-
+    index_of_first_one(T, Index1),
+    Index is Index1 + 1.
+
+
+
+
+first_and_last_one(List, First, Last) :-
+    %nth0(First, List, 1),              % find the first '1' in the list
+    index_of_first_one(List,First),
+    reverse(List, ReversedList),
+    %nth0(ReversedIndex, ReversedList, 1),         % find the last '1' in the reversed list
+    index_of_first_one(ReversedList,ReversedIndex),
+    length(List, Length),
+    Last is Length - ReversedIndex - 1.          % calculate the real last index
+
+/*
+overlap([], []) :- fail.
+overlap([1|_], [1|_]). 
+
+overlap([H1|T1], [_|T2]) :- 
+    H1 \= 1,
+    overlap(T1, T2).
+overlap([_|T1], [H2|T2]) :- 
+    H2 \= 1,
+    overlap(T1, T2).
+*/
+matching_es(L1,L2):-
+    first_and_last_one(L1,_,Last1),
+    first_and_last_one(L2,First2,_),
+    %write(First2-Last1),
+    First21 is First2-1,
+    First21=Last1.
+
+% Predicate to check if '1's in all pairs of rows overlap
+a_overlap([_]).
+a_overlap([R1, R2|Rest]) :-
+    write("T:"),
+    write(R1),
+    write(R2),    
+    overlap(R1, R2),
+    all_overlap([R2|Rest]).
+
+%Allen relationship
+before(L1,L2):-
+    first_and_last_one(L1,_,Last1),
+    first_and_last_one(L2,First2,_),
+    write(Last1),
+    write(":"),
+    write(First2),
+    write("|\n"),
+    Last1 < (First2-1).
+
+meet(L1,L2):-
+    first_and_last_one(L1,_,Last1),
+    first_and_last_one(L2,First2,_),
+    Last1 is (First2-1).
+
+overlap([], []) :- fail.
+overlap([1|_], [1|_]). 
+
+overlap([H1|T1], [_|T2]) :- 
+    H1 \= 1,
+    overlap(T1, T2).
+overlap([_|T1], [H2|T2]) :- 
+    H2 \= 1,
+    overlap(T1, T2).
+
+start(L1,L2):-
+    first_and_last_one(L1,First1,Last1),
+    first_and_last_one(L2,First2,Last2),
+    %write(First1),write("|"),write(First2),
+    First1 is First2,
+    Last1<Last2.
+
+during(L1,L2):-
+    first_and_last_one(L1,First1,Last1),
+    first_and_last_one(L2,First2,Last2),
+    %write(First1),write("|"),write(First2),
+    First1 is First2,
+    Last1<Last2.
+before(x):- x=1.
+allenrelation(L1,L2, State_Lines):-
+    first_and_last_one(L1,First1,Last1),
+    first_and_last_one(L2,First2,Last2),  
+    /*write(Last1),
+    write(":"),
+    write(First2),
+    write("|\n"),*/
+    (   
+    Last1 < (First2 - 1)
+    ->  State_Lines = 'before'
+    
+    ;   Last1 is (First2 - 1)
+    ->  State_Lines = 'meet'   
+    
+    ;   (First1 > First2,Last1<Last2)
+    ->  State_Lines = 'during'
+    
+    ;   (First1 is First2,Last1 is Last2)
+    ->  State_Lines = 'equal'
+    
+    ;   (First1 is First2,Last1<Last2)
+    ->  State_Lines = 'start'    
+    
+    ;   (First1 is First2,Last1>Last2)
+    ->  State_Lines = 'started_by'
+    
+    ;   (   First2 > First1,
+    		Last2 =:= Last1)
+    ->  State_Lines = 'finished' 
+    
+    ;   (   First1 > First2,
+    		Last2 =:= Last1)
+    ->  State_Lines = 'finish'  
+
+    
+    ;   Last2 is (First1 - 1)
+    ->  State_Lines = 'met_by' 
+    
+    ;   Last2 < (First1 - 1)
+    ->  State_Lines = 'after'
+    
+    ;   (   First2 > First1,
+    		Last2 < Last1)
+    ->  State_Lines = 'contain'
+    
+    ;   ((First1 < First2),
+    	 (Last1 < Last2),
+    	(First1 \= First2 , Last1 \= Last2))
+    ->  State_Lines = 'overlap'
+
+    ;   ((First1 > First2),
+    	 (Last1 > Last2),
+        (First1 \= First2 , Last1 \= Last2))
+    ->  State_Lines = 'overlaped_by'
+    
+    ;   State_Lines = 0
+    )
+    %write(State_Lines).
+    .
+
+
+
+
+/*
+allen(L1,L2):-
+	first_and_last_one(L1,First1,Last1),
+    first_and_last_one(L2,First2,Last2),  
+*/
+  
+align([]).
+align([Line|Rest]):-
+	%first_and_last_one(Line,First1,_),
+    %First1 is 0,
+    [X|_]=Line,
+    X is 1,
+    align(Rest).
+
+centered([]).
+centered([Line|Rest]):-
+    reverse(Line,Rline),
+    Line = Rline,
+    centered(Rest).
+
+mesh_alter([],X):-
+    X \=0 ->  true;
+    X = 0->  fail.
+mesh_alter([_],X):-
+    % write(X),
+    X \=0 ->  true;
+    X = 0->  fail.
+mesh_alter([L1,L2|Rest],Last_state):-
+    %first_and_last_one(L1,First1,Last1),
+    %first_and_last_one(L2,First2,Last2), 
+    %write(L1),
+    allenrelation(L1,L2, Next_state),
+    % write('2:'),write(Next_state),
+    %Next_state = 'overlap',
+    (   (Last_state = 0);
+    (Last_state = 'overlap',
+     Next_state = 'overlaped_by');
+    (Last_state = 'overlaped_by',
+     Next_state = 'overlap')),
+    mesh_alter([L2|Rest],Next_state).
+
+
+
+
+end_start([],X):- 
+    X \=0 ->  true;
+    X = 0->  fail.
+end_start([_],X):- 
+    X \=0 ->  true;
+    X = 0->  fail.
+end_start([L1,L2|Rest],_):-
+    allenrelation(L1,L2, Next_state),
+    %write(Next_state),
+    Next_state = 'meet',
+    end_start(Rest,Next_state).
+
+
+cascaded([],X):- 
+    X \=0 ->  true;
+    X = 0->  fail.
+cascaded([_],X):- 
+    X \=0 ->  true;
+    X = 0->  fail.
+cascaded([L1,L2|Rest],_):-
+    allenrelation(L1,L2, Next_state),
+    %write(Next_state),
+    Next_state = 'overlap',
+    cascaded([L2|Rest],Next_state).
+
+%all_is_one([0|L1]):- fail.
+all_ones([]).
+all_ones([1|T]) :-
+    all_ones(T).
+
+
+/*
+framing([],X):- 
+    X \=0 ->  true;
+    X = 0->  fail.
+framing([_],X):- 
+    X \=0 ->  true;
+    X = 0->  fail.*/
+fl([]).
+fl(List):-
+	[L|Rest]=List,
+    L = [1|_],
+    reverse(L,RL),
+    RL = [1|_],
+    \+ all_ones(L),
+    fl(Rest).
+    
+
+framing(Rest):-
+    length(Rest, Length),
+    Length > 2,
+    [L1|Rest1]=Rest,
+    reverse(Rest1,RRest),
+    [RL1|RRest1]=RRest,
+    all_ones(L1),
+    all_ones(RL1),
+    % write(RRest1),
+    fl(RRest1).
+
+% linetype([[1,1,1,1,1],[1,1,0,0,1],[1,0,0,0,1],[1,1,1,1,1]],Y)
+linetype(Group1,AlignedLeft):-
+    length(Group1, Length),
+    Length>0,
+    % AlignedLeft='0',
+    %write(Group1),
+	(  
+    framing(Group1)->  AlignedLeft='Framing';
+    align(Group1)->  AlignedLeft='align';
+    
+    centered(Group1)->  AlignedLeft='centered';
+    mesh_alter(Group1,0)->  AlignedLeft='Meshed alternately';
+    end_start(Group1,0)->  AlignedLeft='Matching end-start';
+    cascaded(Group1,0)->  AlignedLeft='Cascaded'
+    ; AlignedLeft='0'
+    
+      
+    ) .
+    
+
+create_list(0, []).
+create_list(Length, [0|Rest]) :-
+    Length > 0,
+    NewLength is Length - 1,
+    create_list(NewLength, Rest).
+
+
+%all_allen([[1,1,0,0,0],[0,0,1,1,0],[1,1,0,0,0],[1,1,1,1,0]],Y).
+%Y = [meet, met_by, start]
+all_allen([_],[]):-!.
+all_allen([],[]):-!.
+all_allen(G,[Allen_state|G_allen]):-
+    
+    length(G, Length),
+    Length>1,
+    [L1,L2|Rest]=G,
+    allenrelation(L1,L2,Allen_state),
+    all_allen([L2|Rest],G_allen).
+
+% all_allen_text()
+
+%remove_consecutive_duplicates([equal, equal, equal, meet, met_by, start], Output).
+%Output = [equal, meet, met_by, start]
+remove_consecutive_duplicates([], []):-!.
+remove_consecutive_duplicates([H|T], [H|T2]) :-
+    remove_consecutive_duplicates_helper(H, T, T2).
+
+remove_consecutive_duplicates_helper(_, [], []):-!.
+remove_consecutive_duplicates_helper(H, [H|T], T2) :-
+    remove_consecutive_duplicates_helper(H, T, T2).
+remove_consecutive_duplicates_helper(H, [H2|T], [H2|T2]) :-
+    H \= H2,
+    remove_consecutive_duplicates_helper(H2, T, T2).
+
+
+
+count_same_elements(List1, List2, Count) :-
+    maplist(same_element, List1, List2, Matches),
+    sumlist(Matches, Count).
+
+same_element(X, X, 1).
+same_element(_, _, 0).
+
+
+
+rllist_compare1([],[],[]):-!.
+rllist_compare1([H1|L1],[H2|L2],[H3|L3]):-
+    N1 is (H1-H2),
+    abs(N1,H3),
+    rllist_compare1(L1,L2,L3).
+    
+
+mean(List, Mean) :-
+    sumlist(List, Sum),
+    length(List, Length),
+    Mean is Sum / Length.
+
+    
+%all_rl([_],[]):-!.
+all_rl([],[]):-!.
+all_rl(G,[Rl_state|G_rl]):-
+    [L1|Rest]=G,    
+    length(L1, Length),
+    Mid is (Length-1)/2,
+    %write(Mid),
+    %Length>1,
+    first_and_last_one(L1,First1,Last1),
+    %first_and_last_one(L2,First2,Last2), 
+    Mid1 is (First1+ Last1)/2,
+    %Mid2 is (First2+Last2)/2,
+    Rl_state is (Mid1 - Mid)/Mid,
+
+    all_rl(Rest,G_rl).
+
+percentage_same_elements(List1, List2, Percentage) :-
+    length(List1, Length),
+    count_same_elements(List1, List2, Count),
+    Percentage is (Count / Length).
+/*
+count_same_elements([], [], 0):-!.
+count_same_elements([X|Xs], [X|Ys], Count) :-
+    count_same_elements(Xs, Ys, RestCount),
+    Count is RestCount + 1.
+count_same_elements([_|Xs], [_|Ys], Count) :-
+    count_same_elements(Xs, Ys, Count).
+*/
+
+% list_same_element([],[],0).
+% list_same_element(L1,L2,Res):
+%     [H1|L1T]=L1,
+%     [H2|L2T]=L2,
+%     H1=H2->Res=Res+1,
+%     list_same_element(L1T,L2T,Res).
+
+
+% Flatten a list
+flatten([], []).
+flatten([H|T], FlatList) :-
+    flatten(H, NewH),
+    flatten(T, NewT),
+    append(NewH, NewT, FlatList).
+flatten(H, [H]).
+
+% Count the number of same elements in two lists
+count_same([], [], 0).
+count_same([H1|T1], [H2|T2], Count) :-
+    H1 = H2,
+    count_same(T1, T2, NewCount),
+    Count is NewCount + 1.
+count_same([H1|T1], [H2|T2], Count) :-
+    H1 \= H2,
+    count_same(T1, T2, Count).
+
+% Count the number of same elements in two 2D lists
+count_same_2d(List1, List2, Count) :-
+    flatten(List1, FlatList1),
+    flatten(List2, FlatList2),
+    [L1|_]=List1,
+    length(List1,L_row),
+    length(L1,L_col),
+    L_size is L_col*L_row,
+    count_same(FlatList1, FlatList2, Count1),
+    Count is Count1/L_size.
+
+
+% 最终计算
+group_compare(G1,G2, Res):-
+    all_allen(G1,Allen1),
+    all_allen(G2,Allen2),
+    %write(Allen1),write(Allen2),
+    percentage_same_elements(Allen1,Allen2,Allen_P),
+    all_rl(G1,Rl1),
+    all_rl(G2,Rl2),
+	rllist_compare1(Rl1,Rl2,Rl_P1),
+    %write(Rl1),write(Rl2),
+    %length(Rl_P1,Rl_L),
+    mean(Rl_P1,Rl_P2),
+    write(Rl_P2),
+    
+    Rl_P is (1-Rl_P2)*0.5,
+    write(Rl_P),
+    Res is (0.5*Allen_P+0.5*(1-Rl_P2)).
+
+
+list_weight_add([],_,[],_,[]):-!.
+list_weight_add([H1|L1],W1,[H2|L2],W2,[H_Res|L_Res]):-
+    H_Res is H1*W1+H2*W2,
+    list_weight_add(L1,W1,L2,W2,L_Res).
+
+groups_compare([],_, []):-!.
+groups_compare([G1|S1],G2, [Res|Reslist]):-
+	group_compare(G1,G2, Rest1),
+    count_same_2d(G1,G2, Res2),
+	groups_compare(S1,G2, Reslist).
+
+
+max_element_index(List, Index) :-
+    max_list(List, MaxElement),
+    nth0(Index, List, MaxElement).
+
+corresponding_element(List1, List2, Element) :-
+    max_element_index(List1, Index),
+    nth0(Index, List2, Element).
+
+groups_result(G1,L1,Res):-
+    corresponding_element(G1,L1,Res).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+allen_compare([],[],Allen_count).
+allen_compare([H1|G1_allen],[H2|G2_allen],Allen_count):-
+    H1 is H2 ->  Allen_count=Allen_count+1
+	allen_compare(G1_allen,G2_allen,Allen_count).
+similar(G1,G2):-
+	all_allen(G1,G1_allen),	
+    all_rl(G1,G1_rl),
+   	all_allen(G2,G2_allen),	
+    all_rl(G2,G2_rl).
+*/
+
+split_list(_, [], [], []).
+split_list(N, List, Sub, Rest) :-
+    length(Sub, N),
+    append(Sub, Rest, List).
+
+
+split_into_chunks(_, [], []):-!.
+split_into_chunks(N, List, [Chunk|Rest]) :-
+    length(Chunk, N),
+    append(Chunk, RemainingList, List),
+    split_into_chunks(N, RemainingList, Rest).
+split_into_chunks(_, List, [List]):-!.
+
+
+increment_top_n(0, List, List) :- !.
+increment_top_n(_, [], []) :- !.
+increment_top_n(N, [Head|Tail], [NewHead|NewTail]) :-
+    N > 0,
+    NewHead is Head + 1,
+    NewN is N - 1,
+    increment_top_n(NewN, Tail, NewTail).
+
+    
+
+generate_list(0, _, []):-!.
+generate_list(N, Element, [Element|T]) :-
+    N > 0,
+    NewN is N - 1,
+    generate_list(NewN, Element, T).
+%divide_num(12,5,L).
+%L = [3, 3, 2, 2, 2]
+divide_num(N,K,L):-
+    %length(L,K),
+    Value is N // K,
+    Rest_num is mod(N,K),
+    generate_list(K,Value,L1),
+    increment_top_n(Rest_num,L1,L).
+   
+
+%dl1( [1,2,3,4,5,6,7,8,9,10,11], [3,2,2,2,2],Y).
+%Y = [[1, 2, 3], [4, 5], [6, 7], [8, 9], [10, 11]]
+dl1([],[],[]):-!.
+dl1(L1,[Num|L_num],[Divided_L|L2]):-
+    split_list(Num,L1,Divided_L,Rest),
+    dl1(Rest,L_num,L2).
+
+%Divide the input 1-d list into 5 parts
+%divide_list( [1,2,3,4,5,6,7,8,9,10,11], 5,Y).
+%Y = [[1, 2, 3], [4, 5], [6, 7], [8, 9], [10, 11]]
+divide_list(L1,N,L2):- 
+    length(L1,Length),
+	divide_num(Length,N,L_num),
+    dl1(L1,L_num,L2).
+
+average(List, Average) :-
+    sum_list(List, Sum),
+    length(List, Length),
+    Length > 0,    % to avoid division by zero
+    Average is Sum / Length.
+
+
+line_zip([],_,[]):-!.
+line_zip([H1|L1],Threshold,[H2|L2]):-
+    length(H1,X),
+    X>0,
+    average(H1,Ave),
+    (   Ave>=Threshold ->  H2 =1;
+    	Ave<Threshold ->  H2=0),
+   % write(L1),
+  %  write(H2),
+    line_zip(L1,Threshold,L2).
+%lines_zip([[1,0,0,1,0,0,1,1,0,0,1],[1,0,0,1,0,0,1,1,0,0,1],[1,0,0,1,0,0,1,1,0,0,1],[1,0,0,1,0,0,1,1,0,0,1]], 0.4,Y).
+%Y = [[0, 1, 1, 1, 1], [0, 1, 1, 1, 1], [0, 1, 1, 1, 1], [0, 1, 1, 1, 1]]
+
+lines_zip([],_,_,[]):-!.
+lines_zip([H1|L1],Num,Threshold,[H2|L2]):-
+    divide_list(H1,Num,HR1),
+    line_zip(HR1,Threshold,H2),
+    lines_zip(L1,Num,Threshold,L2).
+
+
+split([], _, []):-!.
+split(List, [Size|Rest_size], [Chunk|Chunks]) :-
+    split_at(Size, List, Chunk, Rest),
+    split(Rest, Rest_size, Chunks).
+
+split_at(0, List, [], List):-!.
+split_at(N, [Head|Tail], [Head|Chunk], Rest) :-
+    M is N - 1,
+    split_at(M, Tail, Chunk, Rest).
+
+sum_elements([], [], []).
+sum_elements([H1|T1], [H2|T2], [H3|T3]) :-
+    H3 is H1 + H2,
+    sum_elements(T1, T2, T3).
+
+%sum_lists([[1, 2, 3], [4, 5, 6], [7, 8, 9]], Result).
+%Result = [12, 15, 18]
+sum_lists([List], List):-!.
+sum_lists([List1, List2 | Rest], Result) :-  
+    sum_elements(List1, List2, Temp),
+    sum_lists([Temp | Rest], Result).
+
+ave_list([],_,[]):-!.
+ave_list([L1|List],Length,[L2|Result]):-
+    L2 is L1/Length,
+    ave_list(List,Length,Result).
+
+filiter([],_,[]):-!.
+filiter([H1|L1],Threshold,[H2|L2]):-
+    %write('H1:'),write(H1),
+    (   H1>=Threshold ->  H2 =1;
+    H1<Threshold ->  H2=0),
+    filiter(L1,Threshold,L2).
+
+zip_group([],[],_,[]):-!.
+zip_group([H1|G1],[L1|List_L],Threshold,[H2|G2]):-
+    %write('H1:'),write(H1),
+    sum_lists(H1,H_1),
+    %write('H11:'),write(H1),
+    ave_list(H_1,L1,H2_temp),
+    %write('H12:'),write(H2),
+    filiter(H2_temp,Threshold,H2),
+    %write('H2:'),write(H2),
+    zip_group(G1,List_L,Threshold,G2).
+	
+
+%extend_row([]):-
+
+list2zip(Group1,Size,Threshold,Group2):-
+    lines_zip(Group1,Size,Threshold,Group1_1),
+    length(Group1,GL1),
+    %[L1|_] = Group1,
+    %length(L1,List_L),
+    divide_num(GL1,Size,GList),
+    dl1(Group1_1,GList,Group1_1_div),
+    zip_group(Group1_1_div,GList,Threshold,Group2).
+    
+    
+
+%lines_ave()
+/*
+distribute(N, K, Result) :-
+    distribute_helper(N, K, K, Result-[]).
+
+distribute_helper(0, _, _, Acc-Acc).
+distribute_helper(N, K, R, Acc1-Acc2, Result) :-
+    N > 0,
+    Value is N // K,
+    NewValue is (N // K) + 1,
+    (   R > 0
+    ->  Acc2 = [NewValue | Acc3],
+        NewN is N - NewValue,
+        NewR is R - 1
+    ;   Acc2 = [Value | Acc3],
+        NewN is N - Value,
+        NewR is R
+    ),
+    NewK is K - 1,
+    distribute_helper(NewN, NewK, NewR, Acc1-Acc3, Result).
+*/
+
+
+
+
+/*
+:- use_module(library(lists)).
+
+last_index_of_one1(List, Index) :-
+    reverse(List, RevList),
+    index_of_first_one1(RevList, RevIndex),
+    length(List, Len),
+    Index is Len - RevIndex - 1.
+
+index_of_first_one1([1|_], 0) :- !.
+index_of_first_one1([_|T], Index) :-
+    index_of_first_one1(T, Index1),
+    Index is Index1 + 1.
+
+check_indexes(Arr1, Arr2) :-
+    last_index_of_one1(Arr1, Last1),
+    index_of_first_one1(Arr2, First2),
+    write(Last1),
+    write(":"),
+    write(First2),
+    write("|\n"),
+    Last1 < First2.
+*/
+zeros(N, L) :-
+    length(L, N),
+    maplist(=(0), L).
+
+replace([_|T], 0, X, [X|T]).
+replace([H|T], I, X, [H|R]) :-
+    I > 0,
+    NI is I-1,
+    replace(T, NI, X, R).
+
+%list_devide(L_in, L_out):-
+    
+
+
+
+
+
+
+
+%Allen relationship
+/*
+before(L1,L2):-
+    first_and_last_one(L1,_,Last1),
+    first_and_last_one(L2,First2,_),
+    %write(First2-Last1),
+    %Last11 is Last1+2,
+    write(Last1),
+    write(":"),
+    write(First2),
+    write("|\n"),
+    (First2>Last1 -> !; fail).*/
+/*
+% base cases
+last_index_of_one([], -1).
+last_index_of_one([1|T], Index) :- 
+    last_index_of_one(T, NextIndex), 
+    Index is NextIndex + 1.
+last_index_of_one([_|T], Index) :- 
+    last_index_of_one(T, Index).
+
+% base cases
+first_index_of_one([1|_], 0).
+first_index_of_one([_|T], Index) :- 
+    first_index_of_one(T, NextIndex), 
+    Index is NextIndex + 1.
+
+% the predicate for checking "before" relationship
+before(Array1, Array2) :-
+    write(Array1),
+    last_index_of_one(Array1, LastOneInArray1),
+    write(LastOneInArray1),
+    first_index_of_one(Array2, FirstOneInArray2),
+    
+    write(FirstOneInArray2),
+    LastOneInArray1 < FirstOneInArray2.
+*/
+
+
+    
+
+
+
+	
+

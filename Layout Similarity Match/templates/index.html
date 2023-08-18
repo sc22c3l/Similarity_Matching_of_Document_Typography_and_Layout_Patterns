@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Form</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10vh;
+        }
+        .txtCenter{
+            text-align:center;  
+        } 
+    </style>
+</head>
+<body>
+    <h1 class="txtCenter">Similarity Matching</h1>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="txtCenter">
+        <label for="image" style="font-size:20px; ">Upload an image:</label>
+        <input type="file" name="image"  accept="image/*"><br><br>
+        </div>
+
+        <div class="txtCenter">
+        <label for="textinput" style="font-size:20px; ">Input group array:</label>
+        </br>
+        <textarea id='textinput' name="textinput" rows="8" cols="50"></textarea>
+        </br>
+        <input type="button" value="Clear" onclick="document.getElementById('textinput').value=''" />
+        <p>
+            Upload image: <input type="radio" name="mode" value="image_mode" checked/>
+            Input group:  <input type="radio" name="mode" value="group_mode" />
+        </p>
+        <label for="textinput" >Choose the num of output examples:</label>
+        <select id="topn" name="topn">
+            <option value = 1>1</option>
+            <option value = 2>2</option>
+            <option value = 3>3</option>
+            <option value = 4>4</option>
+            <option value = 5>5</option>
+        </select>
+        </br>
+        <input type="submit" value="Submit">
+        <a href="http://localhost:5000/">Reset</a>
+        </div>
+        
+        <br></br>
+        <div class="txtCenter">
+        <label for="textinput" style="font-size:20px; ">Return result:</label>
+        <br>
+        
+        <textarea id="resultBox" name="resultBox" rows="10" cols="50">{{ result }}</textarea>
+        </div>
+    </form>
+
+    
+
+</body>
+</html>
